@@ -32,8 +32,10 @@ export class TasksService {
     return of(this.tasks.find(task => task.id === id))
   }
 
+
+  private currentId = 0;
   addTask (task: Tasks): Observable<Tasks> {
-    task.id = this.tasks.length + 1
+    task.id = ++this.currentId
     this.tasks.push(task)
     return of(task)
   }

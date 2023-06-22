@@ -25,10 +25,10 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask (id: number): void {
+    // alert are you sure?
+    if (!confirm('Are you sure?')) return;
     this.tasksService.deleteTask(id).subscribe(() => {
       this.tasks = this.tasks.filter(task => task.id !== id);
-      // alert are you sure?
-      alert('Are you sure?');
     });
   }
 
