@@ -31,10 +31,13 @@ export class EditTaskComponent implements OnInit {
     this.tasksService.getTaskById(this.taskId).subscribe((task: Tasks | undefined) => {
       if (task) {
         this.task = task;
-        this.taskForm.patchValue({
-          title: task?.title || '',
-          date: task?.date ? task.date.toISOString().substring(0, 10) : ''
-        });
+        // if the inputs value are defined
+        if (this.taskForm) {
+          this.taskForm.patchValue({
+            title: task?.title || '',
+            date: task?.date ? task.date.toISOString().substring(0, 10) : ''
+          });
+        }
       }
     });
   }
